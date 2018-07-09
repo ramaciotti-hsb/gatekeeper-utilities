@@ -49,6 +49,10 @@ distance-to-polygon@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/distance-to-polygon/-/distance-to-polygon-2.0.2.tgz#4e17983f8989ddcf33962c5c57ce8d54c37987f6"
 
+hsl-to-rgb-for-reals@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/hsl-to-rgb-for-reals/-/hsl-to-rgb-for-reals-1.1.0.tgz#50cf13dc9e5e722af29b5e5bea6e0d675a671e08"
+
 hull.js@^0.2.10:
   version "0.2.10"
   resolved "https://registry.yarnpkg.com/hull.js/-/hull.js-0.2.10.tgz#2d3e383f6e8793d4ec74355a92b7da2eb8ade35b"
@@ -75,3 +79,7 @@ polygon-overlap@^1.0.5:
   dependencies:
     lines-intersect "1.0.0"
     point-inside-polygon "1.0.1"
+
+ulp@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ulp/-/ulp-1.0.1.tgz#e3a4a5b4de9bd0faae63e4544ee63a0d9bd34bc5"
