@@ -3,7 +3,7 @@
 // -------------------------------------------------------------
 
 import hslToRGB from 'hsl-to-rgb-for-reals'
-import * as d3 from "d3"
+import { scaleLog, scaleLinear } from "d3-scale"
 import logicleScale from './scales/logicle.js'
 import arcsinScale from './scales/arcsinh-scale'
 import constants from '../gatekeeper-utilities/constants'
@@ -69,13 +69,13 @@ const getScales = (options) => {
     const scales = {}
     // console.log(options)
     if (options.selectedXScale === constants.SCALE_LINEAR) {
-        scales.xScale = d3.scaleLinear().range([0, options.width]) // value -> display
+        scales.xScale = scaleLinear().range([0, options.width]) // value -> display
         // don't want dots overlapping axis, so add in buffer to data domain
         scales.xScale.domain([options.xRange[0], options.xRange[1]]);
     // Log Scale
     } else if (options.selectedXScale === constants.SCALE_LOG) {
         // Log scale will break for values <= 0
-        scales.xScale = d3.scaleLog()
+        scales.xScale = scaleLog()
             .range([0, options.width])
             .base(Math.E)
             .domain([options.xRange[0], options.xRange[1]])
@@ -89,11 +89,11 @@ const getScales = (options) => {
 
     // setup y
     if (options.selectedYScale === constants.SCALE_LINEAR) {
-        scales.yScale = d3.scaleLinear().range([options.height, 0]) // value -> display
+        scales.yScale = scaleLinear().range([options.height, 0]) // value -> display
         scales.yScale.domain([options.yRange[0], options.yRange[1]]);
     // Log Scale
     } else if (options.selectedYScale === constants.SCALE_LOG) {
-        scales.yScale = d3.scaleLog()
+        scales.yScale = scaleLog()
             .range([options.height, 0])
             .base(Math.E)
             .domain([options.yRange[0], options.yRange[1]])
