@@ -2,12 +2,12 @@
 // Utilities for manipulating polygons on a geometric level
 // -------------------------------------------------------------------------
 
-import { distanceToPolygon, distanceBetweenPoints } from 'distance-to-polygon'
-import polygonsIntersect from 'polygon-overlap'
-import pointInsidePolygon from 'point-in-polygon'
-import { getPolygonCenter } from './utilities'
-import hull from 'hull.js'
-import _ from 'lodash'
+const { distanceToPolygon, distanceBetweenPoints } = require('distance-to-polygon')
+const polygonsIntersect = require('polygon-overlap')
+const pointInsidePolygon = require('point-in-polygon')
+const { getPolygonCenter } = require('./utilities')
+const hull = require('hull.js')
+const _ = require('lodash')
 
 const getMidPoint = function (x1, y1, x2, y2, per) {
     return [x1 + (x2 - x1) * per, y1 + (y2 - y1) * per];

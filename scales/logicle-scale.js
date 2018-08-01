@@ -1,4 +1,4 @@
-import { ulp } from 'ulp'
+const { ulp } = require('ulp')
 /**
  * Translated to Javascript by Nic Barker.
  * Based on the Java implementation by Wayne A. Moore:

@@ -2,11 +2,11 @@
 // Javascript utility functions
 // -------------------------------------------------------------
 
-import hslToRGB from 'hsl-to-rgb-for-reals'
-import { scaleLog, scaleLinear } from "d3-scale"
-import logicleScale from './scales/logicle.js'
-import arcsinScale from './scales/arcsinh-scale'
-import constants from '../gatekeeper-utilities/constants'
+const hslToRGB = require('hsl-to-rgb-for-reals')
+const { scaleLog, scaleLinear } = require("d3-scale")
+const logicleScale = require('./scales/logicle.js')
+const arcsinScale = require('./scales/arcsinh-scale')
+const constants = require('../gatekeeper-utilities/constants')
 
 const heatMapHSLStringForValue = function (value) {
     var h = (1.0 - value) * 240
@@ -139,4 +139,4 @@ function getPolygonBoundaries (points) {
     return [ [ minX, maxX ], [ minY, maxY ] ]
 }
 
-export { heatMapHSLStringForValue, heatMapRGBForValue, getPlotImageKey, getScales, getPolygonCenter, getPolygonBoundaries }
+module.exports = { heatMapHSLStringForValue, heatMapRGBForValue, getPlotImageKey, getScales, getPolygonCenter, getPolygonBoundaries }
