@@ -139,4 +139,79 @@ function getPolygonBoundaries (points) {
     return [ [ minX, maxX ], [ minY, maxY ] ]
 }
 
-module.exports = { heatMapHSLStringForValue, heatMapRGBForValue, getPlotImageKey, getScales, getPolygonCenter, getPolygonBoundaries }
+// Returns peaks arranged into groups along the x and y axis
+const getAxisGroups = (peaks) => {
+    // Percentage of maximum distance between furthest peak to group together
+    const maxGroupDistance = 0.3
+    // Divide peaks into groups along the x and y axis
+    // Get [minX, maxX] range of peaks along x axis
+    let xRange = peaks.reduce((acc, curr) => { return [ Math.min(acc[0], curr.nucleus[0]), Math.max(acc[1], curr.nucleus[0]) ] }, [Infinity, -Infinity])
+    // Get [minY, maxY] range of peaks along y axis
+    let yRange = peaks.reduce((acc, curr) => { return [ Math.min(acc[0], curr.nucleus[1]), Math.max(acc[1], curr.nucleus[1]) ] }, [Infinity, -Infinity])
+    // Create buckets and place peaks into groups along each axis
+    let xGroups = []
+    let yGroups = []
+    for (let peak of peaks) {
+    
+        const newXGroup = () => {
+            xGroups.push({
+                position: peak.nucleus[0],
+                peaks: [ peak.id ]
+            })
+        }
+
+        // Create a group from the first peak
+        if (xGroups.length === 0) {
+            newXGroup()
+        } else {
+            let found = false
+        
+            for (let group of xGroups) {
+                const distance = Math.abs(group.position - peak.nucleus[0])
+                // If the peak is within 10% of an existing group, add it to that group
+                if (distance < (xRange[1] - xRange[0]) * maxGroupDistance || distance < 20) {
+                    group.peaks.push(peak.id)
+                    found = true
+                }
+            }
+        
+            // Otherwise create a new group
+            if (!found) {
+                newXGroup()
+            }
+        }
+
+        const newYGroup = () => {
+            yGroups.push({
+                position: peak.nucleus[1],
+                peaks: [ peak.id ]
+            })
+        }
+
+        // Create a group from the first peak
+        if (yGroups.length === 0) {
+            newYGroup()
+        } else {
+            let found = false
+        
+            for (let group of yGroups) {
+                const distance = Math.abs(group.position - peak.nucleus[1])
+                // If the peak is within 10% of an existing group, add it to that group
+                if (distance < (yRange[1] - yRange[0]) * maxGroupDistance || distance < 20) {
+                    group.peaks.push(peak.id)
+                    found = true
+                }
+            }
+        
+            // Otherwise create a new group
+            if (!found) {
+                newYGroup()
+            }
+        }
+    }
+    xGroups.sort((a, b) => { return a.position - b.position })
+    yGroups.sort((a, b) => { return a.position - b.position })
+    return { xGroups, yGroups } 
+}
+
+module.exports = { heatMapHSLStringForValue, heatMapRGBForValue, getPlotImageKey, getScales, getPolygonCenter, getPolygonBoundaries, getAxisGroups }
