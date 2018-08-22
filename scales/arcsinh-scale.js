@@ -2,7 +2,8 @@ const {ticks} = require("d3-array");
 const {format} = require("d3-format");
 const constant = require("../node_modules/d3-scale/src/constant");
 const nice = require("../node_modules/d3-scale/src/nice");
-const {default as continuous, copy} = require("../node_modules/d3-scale/src/continuous");
+const continuous = require("../node_modules/d3-scale/src/continuous");
+const copy = continuous.copy
 
 function deinterpolate(a, b) {
   return function (x) { return Math.asinh(x) / Math.asinh(Math.max(a, b)) }

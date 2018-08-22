@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     // Scales
     SCALE_LINEAR: 'SCALE_LINEAR',
     SCALE_LOG: 'SCALE_LOG',

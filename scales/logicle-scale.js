@@ -16,7 +16,7 @@ const { ulp } = require('ulp')
 
 const LN_10 = Math.log(10)
 
-export default class Logicle {
+class Logicle {
 
   /**
    * Real constructor that does all the work. Called only from implementing
@@ -380,3 +380,5 @@ export default class Logicle {
         return label
     }
 }
+
+module.exports = Logicle

@@ -6,7 +6,7 @@ const hslToRGB = require('hsl-to-rgb-for-reals')
 const { scaleLog, scaleLinear } = require("d3-scale")
 const logicleScale = require('./scales/logicle.js')
 const arcsinScale = require('./scales/arcsinh-scale')
-const constants = require('../gatekeeper-utilities/constants')
+const constants = require('./constants')
 
 const heatMapHSLStringForValue = function (value) {
     var h = (1.0 - value) * 240
