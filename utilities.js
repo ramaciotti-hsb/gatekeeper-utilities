@@ -245,4 +245,20 @@ export const getMetadataFromFCSFileText = (text) => {
     return FCSParameters
 }
 
-module.exports = { heatMapHSLStringForValue, heatMapRGBForValue, getPlotImageKey, getScales, getPolygonCenter, getPolygonBoundaries, getAxisGroups, getMetadataFromFCSFileText }
+export const getMetadataFromCSVFileHeader = (header) => {
+    return header.map((column, index) => {
+        return {
+            key: column,
+            label: column,
+            index,
+            statistics: {
+                min: Infinity,
+                positiveMin: Infinity,
+                max: -Infinity,
+                mean: 0
+            }
+        }
+    })
+}
+
+module.exports = { heatMapHSLStringForValue, heatMapRGBForValue, getPlotImageKey, getScales, getPolygonCenter, getPolygonBoundaries, getAxisGroups, getMetadataFromFCSFileText, getMetadataFromCSVFileHeader }
