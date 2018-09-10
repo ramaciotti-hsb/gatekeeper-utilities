@@ -7,6 +7,7 @@ const { scaleLog, scaleLinear } = require("d3-scale")
 const logicleScale = require('./scales/logicle.js')
 const arcsinScale = require('./scales/arcsinh-scale')
 const constants = require('./constants')
+const _ = require('lodash')
 
 const heatMapHSLStringForValue = function (value) {
     var h = (1.0 - value) * 240
@@ -214,4 +215,34 @@ const getAxisGroups = (peaks) => {
     return { xGroups, yGroups } 
 }
 
-module.exports = { heatMapHSLStringForValue, heatMapRGBForValue, getPlotImageKey, getScales, getPolygonCenter, getPolygonBoundaries, getAxisGroups }
+export const getMetadataFromFCSFileText = (text) => {
+    // Loop through the parameters and get the min and max values of all the data points
+    const FCSParameters = []
+
+    for (let key of _.keys(text)) {
+        if ((key.match(/^\$P.+N$/) || key.match(/^\$P.+S$/)) &&
+            !FCSParameters[parseInt(key.match(/\d+/)[0]) - 1]) {
+            FCSParameters[parseInt(key.match(/\d+/)[0]) - 1] = {
+                key: text[key],
+                label: text[key],
+                index: parseInt(key.match(/\d+/)[0]) - 1,
+                statistics: {
+                    min: Infinity,
+                    positiveMin: Infinity,
+                    max: -Infinity,
+                    mean: 0
+                }
+            }
+        }
+
+        if (key.match(/^\$P.+N$/)) {
+            FCSParameters[parseInt(key.match(/\d+/)[0]) - 1].key = text[key]
+        } else if (key.match(/^\$P.+S$/)) {
+            FCSParameters[parseInt(key.match(/\d+/)[0]) - 1].label = text[key]
+        }
+    }
+
+    return FCSParameters
+}
+
+module.exports = { heatMapHSLStringForValue, heatMapRGBForValue, getPlotImageKey, getScales, getPolygonCenter, getPolygonBoundaries, getAxisGroups, getMetadataFromFCSFileText }
