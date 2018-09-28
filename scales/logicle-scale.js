@@ -9,7 +9,7 @@ const { ulp } = require('ulp')
  * suitable for real time applications. See
  * {@link edu.stanford.facs.logicle.FastLogicle} for a fast lower precision
  * version.
- * 
+ *
  * @author Wayne A. Moore
  * @version 1.0
  */
@@ -21,7 +21,7 @@ class Logicle {
   /**
    * Real constructor that does all the work. Called only from implementing
    * classes.
-   * 
+   *
    * @param T
    *          maximum data value or "top of scale"
    * @param W
@@ -109,7 +109,7 @@ class Logicle {
 
   /**
    * Solve f(dw,b) = 2 * (ln(d) - ln(b)) + w * (d + b) = 0 for d, given b and w
-   * 
+   *
    * @param b
    * @param w
    * @return double root d
@@ -186,7 +186,7 @@ class Logicle {
 
   /**
    * Computes the slope of the biexponential function at a scale value.
-   * 
+   *
    * @param scale
    * @return The slope of the biexponential at the scale point
    */
@@ -202,7 +202,7 @@ class Logicle {
 
   /**
    * Computes the value of Taylor series at a point on the scale
-   * 
+   *
    * @param scale
    * @return value of the biexponential function
    */
@@ -220,7 +220,7 @@ class Logicle {
 
   /**
    * Computes the Logicle scale value of the given data value
-   * 
+   *
    * @param value a data value
    * @return the double Logicle scale value
    */
@@ -291,7 +291,7 @@ class Logicle {
    * Computes the data value corresponding to the given point of the Logicle
    * scale. This is the inverse of the {@link Logicle#scale(double) scale}
    * function.
-   * 
+   *
    * @param scale
    *          a double scale value
    * @return the double data value
@@ -325,16 +325,16 @@ class Logicle {
    * Computes the dynamic range of the Logicle scale. For the Logicle scales
    * this is the ratio of the pixels per unit at the high end of the scale
    * divided by the pixels per unit at zero.
-   * 
+   *
    * @return the double dynamic range
    */
   dynamicRange () {
     return this.slope(1) / this.slope(this.x1)
   }
-  
+
     /**
      * Choose a suitable set of data coordinates for a Logicle scale
-     * 
+     *
      * @return a double array of data values
      */
     axisLabels () {

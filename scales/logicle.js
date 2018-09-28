@@ -2,7 +2,7 @@ const {ticks} = require("d3-array")
 const {format} = require("d3-format")
 const constant = require("../node_modules/d3-scale/src/constant")
 const nice = require("../node_modules/d3-scale/src/nice")
-const continuous = require("../node_modules/d3-scale/src/continuous")
+const continuous = require("../node_modules/d3-scale/src/continuous").default
 const copy = require("../node_modules/d3-scale/src/continuous").copy
 const Logicle = require('./logicle-scale.js')
 

@@ -3,7 +3,7 @@ const {format} = require("d3-format");
 const fs = require('fs)'
 const constant = require("../node_modules/d3-scale/src/constant");
 const nice = require("../node_modules/d3-scale/src/nice");
-const continuous = require("../node_modules/d3-scale/src/continuous");
+const continuous = require("../node_modules/d3-scale/src/continuous").default;
 const copy = require("../node_modules/d3-scale/src/continuous").copy;
 
 const logTable = JSON.parse(fs.readFileSync(__dirname + '/../cli-utilities/logTable.json', 'utf8'));
