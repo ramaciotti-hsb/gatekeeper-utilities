@@ -153,7 +153,7 @@ const getAxisGroups = (peaks) => {
     let xGroups = []
     let yGroups = []
     for (let peak of peaks) {
-    
+
         const newXGroup = () => {
             xGroups.push({
                 position: peak.nucleus[0],
@@ -166,7 +166,7 @@ const getAxisGroups = (peaks) => {
             newXGroup()
         } else {
             let found = false
-        
+
             for (let group of xGroups) {
                 const distance = Math.abs(group.position - peak.nucleus[0])
                 // If the peak is within 10% of an existing group, add it to that group
@@ -175,7 +175,7 @@ const getAxisGroups = (peaks) => {
                     found = true
                 }
             }
-        
+
             // Otherwise create a new group
             if (!found) {
                 newXGroup()
@@ -194,7 +194,7 @@ const getAxisGroups = (peaks) => {
             newYGroup()
         } else {
             let found = false
-        
+
             for (let group of yGroups) {
                 const distance = Math.abs(group.position - peak.nucleus[1])
                 // If the peak is within 10% of an existing group, add it to that group
@@ -203,7 +203,7 @@ const getAxisGroups = (peaks) => {
                     found = true
                 }
             }
-        
+
             // Otherwise create a new group
             if (!found) {
                 newYGroup()
@@ -212,7 +212,7 @@ const getAxisGroups = (peaks) => {
     }
     xGroups.sort((a, b) => { return a.position - b.position })
     yGroups.sort((a, b) => { return a.position - b.position })
-    return { xGroups, yGroups } 
+    return { xGroups, yGroups }
 }
 
 export const getMetadataFromFCSFileText = (text) => {
