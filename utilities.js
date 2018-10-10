@@ -170,7 +170,7 @@ const getAxisGroups = (peaks) => {
             for (let group of xGroups) {
                 const distance = Math.abs(group.position - peak.nucleus[0])
                 // If the peak is within 10% of an existing group, add it to that group
-                if (distance < (xRange[1] - xRange[0]) * maxGroupDistance || distance < 20) {
+                if (distance < (xRange[1] - xRange[0]) * maxGroupDistance || distance < 30) {
                     group.peaks.push(peak.id)
                     found = true
                 }
